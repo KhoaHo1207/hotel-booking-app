@@ -1,0 +1,22 @@
+import express from "express";
+import cors from "cors";
+import "dotenv/config";
+
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL as string,
+    credentials: true,
+  })
+);
+
+app.get("/", (req, res) => {
+  return res.send("Hello wrold");
+});
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
+});
